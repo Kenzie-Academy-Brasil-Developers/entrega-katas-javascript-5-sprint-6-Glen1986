@@ -7,25 +7,43 @@ let array2 = [4,6,3,7,9,1,5,2];
 let repeat = [2,2,4,6,1,3,3,7,8,5,5,5,3,2,4]
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-const reverseString = (str) =>{
+const reverseString = () =>{
    let newStr = str.split("").reverse().join("");
 //   console.log(newStr)
    return newStr
 }
-reverseString(str);
+reverseString();
 
-function testeReverseString1() {
-   let result = reverseString("Kenzie Academy");
-   let expected = "ymedacA eizneK";
-   console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
+function testeReverseString1(){
+   const tests = [
+      {
+         "input":str,
+         "expected_result": "onom aloh"
+      },
+      {
+         "input":str1,
+         "expected_result": "ymedacA eizneK"
+      }
+
+   ]
+   tests.forEach((test) => console.assert(JSON.stringify(reverseString(test.input)) === JSON.stringify(test.expected_result),
+      {
+         "function":"reverseString",
+         "expected": test.expected_result,
+         "got" : reverseString(test.input),
+         "tested" : test.input
+      }))
 }
+
 testeReverseString1();
 
 function testeReverseString2() {
    let result = reverseString("Pato Amarillo");
    let expected = "olliramA otaP";
    console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
-} testeReverseString2();
+}
+//testeReverseString2();
+
 /////////////////////////////////////////////////////////////////////////////////////////////////
 const reverseSentence = () =>{
   let newStr = str.split(" ").reverse().join(" ");
@@ -63,12 +81,12 @@ function testMinimumValue1(){
         }
     ]
  tests.forEach((test) => console.assert(JSON.stringify(minimumValue(test.input)) === JSON.stringify(test.expected_result),
-                                            {
-                                                "Function": "minimumValue",
-                                                "expected": test.expected_result,
-                                                "got": minimumValue(test.input),
-                                                "tested": test.input
-                                            }))
+             {
+               "Function": "minimumValue",
+               "expected": test.expected_result,
+               "got": minimumValue(test.input),
+               "tested": test.input
+              }))
 }
 testMinimumValue1();
 
@@ -166,7 +184,7 @@ const distinctValues = () =>{
    for (let i = 0; i < repeat.length; i++){
       total.push(repeat[i]);
    }
-   console.log(total.reduce(i.index() === 1))
+ //  console.log(total.reduce(i.index() === 1))
 }
 distinctValues(repeat)
 function testDistinctValues1(){
