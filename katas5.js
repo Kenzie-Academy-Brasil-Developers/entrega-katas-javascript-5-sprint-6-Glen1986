@@ -1,30 +1,26 @@
 // implemente aqui as funções de teste
-let str = "hola mono"
-let str1 = "Kenzie Academy" 
-let str2 = "pato amarillo"
+let a;
+let b;
+let str = "";
+let str1 = "Kenzie Academy"; 
+let str2 = "Pato Amarillo";
 let arrayN = [2,7,4,1,5,6,3,8];
 let array2 = [4,6,3,7,9,1,5,2];
 let repeat = [2,2,4,6,1,3,3,7,8,5,5,5,3,2,4]
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-const reverseString = () =>{
-   let newStr = str.split("").reverse().join("");
-//   console.log(newStr)
+function reverseString(){
+   let newStr = str1.split("").reverse().join("");
    return newStr
 }
-reverseString();
+reverseString(str1);
 
 function testeReverseString1(){
    const tests = [
-      {
-         "input":str,
-         "expected_result": "onom aloh"
-      },
-      {
+     {
          "input":str1,
          "expected_result": "ymedacA eizneK"
       }
-
    ]
    tests.forEach((test) => console.assert(JSON.stringify(reverseString(test.input)) === JSON.stringify(test.expected_result),
       {
@@ -42,10 +38,10 @@ function testeReverseString2() {
    let expected = "olliramA otaP";
    console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
-//testeReverseString2();
+testeReverseString2();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-const reverseSentence = () =>{
+const reverseSentence = (str) =>{
   let newStr = str.split(" ").reverse().join(" ");
 //   console.log(newStr)
    return newStr;
@@ -67,8 +63,8 @@ function test_reverseSentence2() {
 test_reverseSentence2();
  
 /////////////////////////////////////////////////////////////////////////////////////////////////
-const minimumValue = () =>{
-   let narr = arrayN.sort((a, b) => a > b);
+function minimumValue(arrayN) {
+   let narr = arrayN.sort((a,b) => a - b);
    return narr[0]
 }
 minimumValue(arrayN)
@@ -108,8 +104,8 @@ function testMinimumValue2(){
 testMinimumValue2();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-const maximumValue = (arr) =>{
-   let narr = arr.sort((a, b) => a < b);
+const maximumValue = (array2) =>{
+   let narr = array2.sort((a, b) => b - a);
    return narr[0]
 }
 maximumValue(array2)
@@ -149,35 +145,44 @@ function testMaximumValue2(){
 testMaximumValue2();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////
-const calculateRemainder = (arr) =>{
-   const resto = arr.filter(n => n % 2 === 0)
-   //console.log(resto)
-   return resto
+const calculateRemainder = (a,b) =>{
+  return Number(a) % Number(b);
 } 
-calculateRemainder(arrayN);
+calculateRemainder(a,b);
 
-function testCalculateRemainder1(){
-
-   const tests = [
-      {
-         "input":arrayN,
-         "expected_result":[8,6,4,2]
-      },
-      {
-         "input":array2,
-         "expected_result":[6,4,2]
-      }
-   ]
-   tests.forEach((test) => console.assert(JSON.stringify(calculateRemainder(test.input)) === JSON.stringify(test.expected_result),
-      {
-         "function":"calculateRemainder",
-         "expected": test.expected_result,
-         "got" : calculateRemainder(test.input),
-         "tested" : test.input
-      }))
+function testCalculateRemainder1 () {
+   let result = calculateRemainder(4, 2);
+   let expected = 0;
+   console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
 }
 testCalculateRemainder1();
 
+function testCalculateRemainder2 () {
+   let result = calculateRemainder(5, 2);
+   let expected = 1;
+   console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
+}
+testCalculateRemainder2();
+////////////////////////////////////////////////////////////////////////////////////
+const distinctValues = () => {
+let newArr = [];
+   for (let i = 0; i < repeat.length; i++){
+      if(!newArr.includes(repeat[i])){
+         newArr.push(repeat[i])
+      }
+   }
+return newArr;
+}
+ distinctValues(repeat);
+
+function testDistinctValues1(){
+   let result = distinctValues([2,2,4,6,1,3,3,7,8,5,5,5,3,2,4]);
+   let expected = [2, 4, 6, 1, 3, 7, 8, 5];
+   console.assert(result === expected, `esperado: ${expected}, obtido: ${result}`)
+}
+
+
+/*
 const distinctValues = () =>{
   console.log(repeat)
    let total = [];
@@ -202,7 +207,7 @@ function testDistinctValues1(){
          "tested" : test.input
       }))
 }
-
+*/
 
 
 
